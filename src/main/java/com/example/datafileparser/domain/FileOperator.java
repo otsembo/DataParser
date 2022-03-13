@@ -41,7 +41,7 @@ public class FileOperator {
     // get csv file
     public InputStream getCSVFile() throws IOException {
         fileResource = new ClassPathResource("/assets/user.csv");
-        return  new FileInputStream(fileResource.getFile());
+        return  fileResource.getInputStream();
     }
 
     //write csv file
