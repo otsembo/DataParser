@@ -3,6 +3,9 @@ package com.example.datafileparser.data.repository;
 import com.example.datafileparser.data.model.User;
 import com.example.datafileparser.domain.FileRetriever;
 import com.example.datafileparser.domain.UserParser;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -14,6 +17,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class DataRepository {
@@ -95,4 +99,34 @@ public class DataRepository {
 
         return userList;
     }
+
+    public ArrayList<User> fetchJSON() throws IOException{
+        //refresh list
+        userList = new ArrayList<>();
+
+        // build gson
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+
+        //create gson object
+        Gson gson = builder.create();
+
+        // read input stream using a buffered reader
+        dataBuffer = new BufferedReader(new InputStreamReader(retriever.getJSONFile()));
+
+        StringBuilder dataBuilder = new StringBuilder();
+
+        // loop through every line
+        String line;
+        while((line =  dataBuffer.readLine()) != null){
+            dataBuilder.append(line);
+        }
+
+        Type userListType = new TypeToken<ArrayList<User>>(){}.getType();
+        userList = gson.fromJson(dataBuilder.toString().trim(), userListType);
+
+
+        return userList;
+    }
+
 }

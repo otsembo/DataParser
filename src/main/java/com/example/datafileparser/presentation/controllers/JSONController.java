@@ -20,7 +20,7 @@ public class JSONController {
 
     @GetMapping("/data/json/load")
     public String csvLoad(Model model) throws IOException {
-        model.addAttribute("users", dataRepository.fetchCSV());
+        model.addAttribute("users", dataRepository.fetchJSON());
         return "json";
     }
 }
