@@ -6,10 +6,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.ResourceUtils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class FileOperator {
 
@@ -42,10 +39,9 @@ public class FileOperator {
     }
 
     // get csv file
-    public FileInputStream getCSVFile() throws IOException {
-        fileResource = new ClassPathResource("assets/user.csv");
-        File testFile =  ResourceUtils.getFile("classpath:assets/user.csv");
-        return new FileInputStream(testFile);
+    public InputStream getCSVFile() throws IOException {
+        fileResource = new ClassPathResource("/assets/user.csv");
+        return  new FileInputStream(fileResource.getFile());
     }
 
     //write csv file
