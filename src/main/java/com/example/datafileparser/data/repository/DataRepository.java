@@ -86,7 +86,6 @@ public class DataRepository {
         // read input stream using a buffered reader
         dataBuffer = new BufferedReader(new InputStreamReader(operator.getCSVFile()));
         // loop through every line
-        int i = 0;
         String line;
         StringBuilder buffer = new StringBuilder();
         while((line =  dataBuffer.readLine()) != null){
@@ -95,9 +94,7 @@ public class DataRepository {
             try{
                 int myId = Integer.parseInt(String.valueOf(first));
 
-                if(myId == id){
-
-                }else{
+                if(myId != id){
                     buffer.append(line).append(System.lineSeparator());
                 }
 
@@ -106,7 +103,6 @@ public class DataRepository {
             }
 
 
-            i++;
         }
         operator.writeCSV(buffer.toString().trim());
         return fetchCSV();
