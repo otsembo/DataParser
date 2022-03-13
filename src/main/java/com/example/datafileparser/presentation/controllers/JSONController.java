@@ -10,7 +10,7 @@ import java.io.IOException;
 
 @Controller
 public class JSONController {
-    private DataRepository dataRepository = new DataRepository();
+    private final DataRepository dataRepository = new DataRepository();
 
     @GetMapping("/data/json")
     public String csv(Model model) throws IOException {
