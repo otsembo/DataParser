@@ -46,6 +46,8 @@ public class FileOperator {
 
     //write csv file
     public void writeCSV(String data) throws IOException{
+        fileResource = new ClassPathResource("/assets/user.csv");
+        InputStream stream = fileResource.getInputStream();
         FileWriter dataWriter = new FileWriter(new ClassPathResource("assets/user.csv").getFile());
         dataWriter.append(data);
         dataWriter.flush();
