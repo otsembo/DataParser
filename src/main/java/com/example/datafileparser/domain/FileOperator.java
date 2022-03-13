@@ -1,18 +1,18 @@
 package com.example.datafileparser.domain;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 
-public class FileRetriever {
+public class FileOperator {
 
 
     //file resource object
     private Resource fileResource;
 
-    public FileRetriever() {
+    public FileOperator() {
     }
 
     //get json file
@@ -37,6 +37,13 @@ public class FileRetriever {
     public FileInputStream getCSVFile() throws IOException {
         fileResource = new ClassPathResource("assets/user.csv");
         return new FileInputStream(fileResource.getFile());
+    }
+
+    //write csv file
+    public void writeCSV(String data) throws IOException{
+        FileWriter dataWriter = new FileWriter(new ClassPathResource("assets/user.csv").getFile());
+        dataWriter.append(data);
+        dataWriter.flush();
     }
 
 }

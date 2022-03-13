@@ -67,7 +67,7 @@
                             <td>
                                 <div>
                                     <button class="btn orange modal-trigger" data-target="update_modal" style="margin: 1%;" th:attr="onclick=|updateMe('${user.getId()}','${user.getFirst_name()}','${user.getLast_name()}','${user.getEmail()}','${user.getPhone()}','${user.getGender()}')|">UPDATE</button>
-                                    <button class="btn red">DELETE</button>
+                                    <a class="btn red" th:href="@{/data/csv/load/delete/{id}(id=${user.getId()})}">DELETE</a>
                                 </div>
                             </td>
                         </tr>

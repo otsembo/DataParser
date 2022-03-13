@@ -1,7 +1,7 @@
 package com.example.datafileparser.data.repository;
 
 import com.example.datafileparser.data.model.User;
-import com.example.datafileparser.domain.FileRetriever;
+import com.example.datafileparser.domain.FileOperator;
 import com.example.datafileparser.domain.UserParser;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -22,17 +22,17 @@ import java.util.ArrayList;
 
 public class DataRepository {
 
-    private final FileRetriever retriever;
+    private final FileOperator operator;
     private BufferedReader dataBuffer;
     public ArrayList<User> userList;
 
     public DataRepository() {
-        retriever = new FileRetriever();
+        operator = new FileOperator();
     }
 
     public ArrayList<User> fetchCSV() throws IOException {
         // read input stream using a buffered reader
-        dataBuffer = new BufferedReader(new InputStreamReader(retriever.getCSVFile()));
+        dataBuffer = new BufferedReader(new InputStreamReader(operator.getCSVFile()));
         //refresh user list
         userList = new ArrayList<>();
 
@@ -47,6 +47,69 @@ public class DataRepository {
         }
 
         return userList;
+    }
+
+    public ArrayList<User> updateCSV(User user) throws IOException{
+
+        int id = user.getId();
+        // read input stream using a buffered reader
+        dataBuffer = new BufferedReader(new InputStreamReader(operator.getCSVFile()));
+        // loop through every line
+        int i = 0;
+        String line;
+        StringBuilder buffer = new StringBuilder();
+        while((line =  dataBuffer.readLine()) != null){
+
+            char first = line.charAt(0);
+            try{
+                int myId = Integer.parseInt(String.valueOf(first));
+
+                if(myId == id){
+                    buffer.append(user).append(System.lineSeparator());
+                }else{
+                    buffer.append(line).append(System.lineSeparator());
+                }
+
+            } catch (Exception e){
+                System.out.println("NaN");
+            }
+
+
+            i++;
+        }
+        operator.writeCSV(buffer.toString().trim());
+
+        return fetchCSV();
+    }
+
+    public ArrayList<User> deleteFromCSV(int id) throws IOException{
+        // read input stream using a buffered reader
+        dataBuffer = new BufferedReader(new InputStreamReader(operator.getCSVFile()));
+        // loop through every line
+        int i = 0;
+        String line;
+        StringBuilder buffer = new StringBuilder();
+        while((line =  dataBuffer.readLine()) != null){
+
+            char first = line.charAt(0);
+            try{
+                int myId = Integer.parseInt(String.valueOf(first));
+
+                if(myId == id){
+
+                }else{
+                    buffer.append(line).append(System.lineSeparator());
+                }
+
+            } catch (Exception e){
+                System.out.println("NaN");
+            }
+
+
+            i++;
+        }
+        operator.writeCSV(buffer.toString().trim());
+        return fetchCSV();
     }
 
     public ArrayList<User> fetchXML() throws Exception{
@@ -64,7 +127,7 @@ public class DataRepository {
         DocumentBuilder documentBuilder = builderFactory.newDocumentBuilder();
 
         //create document from file
-        Document dataDoc  = documentBuilder.parse(retriever.getXMLFile());
+        Document dataDoc  = documentBuilder.parse(operator.getXMLFile());
 
         //normalize format (optional setting)
         dataDoc.getDocumentElement().normalize();
@@ -112,7 +175,7 @@ public class DataRepository {
         Gson gson = builder.create();
 
         // read input stream using a buffered reader
-        dataBuffer = new BufferedReader(new InputStreamReader(retriever.getJSONFile()));
+        dataBuffer = new BufferedReader(new InputStreamReader(operator.getJSONFile()));
 
         StringBuilder dataBuilder = new StringBuilder();
 

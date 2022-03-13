@@ -7,7 +7,9 @@ import com.example.datafileparser.data.repository.DataRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 
@@ -37,10 +39,16 @@ public class CSVController {
     @PostMapping("/data/csv/load/update")
     public String updateCSV(Model model, User userUpdate) throws IOException{
         model.addAttribute("updated_user", userUpdate);
-        model.addAttribute("users", dataRepository.fetchCSV());
-
+        model.addAttribute("users", dataRepository.updateCSV(userUpdate));
         model.addAttribute("update", true);
-        System.out.println("Update name:"+userUpdate.first_name);
+        return "csv";
+    }
+
+    @GetMapping("/data/csv/load/delete/{id}")
+    public String deleteCSV(Model model, @PathVariable int id) throws IOException{
+        model.addAttribute("updated_user", emptyUser);
+        model.addAttribute("users", dataRepository.deleteFromCSV(id));
+        model.addAttribute("update", true);
         return "csv";
     }
 
