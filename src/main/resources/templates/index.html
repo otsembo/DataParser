@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/header">
+
+</head>
+<body>
+
+   <nav th:insert="fragments/nav">
+
+   </nav>
+
+    <div class="container">
+
+        <div class="row m3">
+            <h2 class="center-align">Welcome to DataParser</h2>
+        </div>
+
+        <div class="row">
+            <h4 class="center-align">This lab will be used to demonstrate how to work with different file formats in Java.</h4>
+        </div>
+
+        <div class="row">
+            <p class="center-align">We will focus on the 4 main types of files:</p>
+        </div>
+
+        <div class="row">
+            <div class="col s1"></div>
+            <div class="col s2">
+                <button class="waves-effect waves-light btn red" style="width: 100%;">CSV</button>
+            </div>
+            <div class="col s1"></div>
+            <div class="col s2">
+                <button class="waves-effect waves-light btn blue" style="width: 100%;">XML</button>
+            </div>
+            <div class="col s1"></div>
+            <div class="col s2">
+                <button class="waves-effect waves-light btn green" style="width: 100%;">SQL</button>
+            </div>
+            <div class="col s1"></div>
+            <div class="col s2">
+                <button class="waves-effect waves-light btn purple" style="width: 100%;">JSON</button>
+            </div>
+        </div>
+
+
+        <div class="row">
+
+            <p>You can download the sample files for this lab from the links below: </p>
+
+            <ul class="collection with-header">
+                <li class="collection-header"><h6>DOWNLOAD LINKS</h6></li>
+
+                <li class="collection-item">
+                    <div>CSV
+                        <a href="#" class="secondary-content">
+                            <i class="material-icons">download</i>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="collection-item">
+                    <div>XML
+                        <a href="#" class="secondary-content">
+                            <i class="material-icons">download</i>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="collection-item">
+                    <div>SQL
+                        <a href="#" class="secondary-content">
+                            <i class="material-icons">download</i>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="collection-item">
+                    <div>JSON
+                        <a href="#" class="secondary-content">
+                            <i class="material-icons">download</i>
+                        </a>
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="row" style="margin-top: 5%;">
+            <h4>Click on the links at the top of the nav to see the different file types functionalities.</h4>
+        </div>
+
+        <div class="row" style="margin-top: .5%">
+            <h3>NB: There is a <i>test</i> folder accompanied by this lab. Ensure all your tests pass as you code along.</h3>
+        </div>
+
+    </div>
+
+    <footer th:insert="fragments/footer">
+
+    </footer>
+    </body>
+</html>
