@@ -2,8 +2,8 @@ package com.example.datafileparser.data.model;
 
 public class User {
 
-    private int id;
-    private String first_name, last_name, email, gender, phone;
+    public int id;
+    public String first_name, last_name, email, gender, phone;
 
     public User() {
     }
