@@ -28,44 +28,96 @@
 </div>
 
 <main class="row">
-    <div class="container" style="height: 100%;">
+    <div th:insert="fragments/update">
+    </div>
+
+    <div class="" style="height: 100%; margin-left: 5%; margin-right: 5%;">
         <div class="row">
 
-            <h3 th:if="${users.size() > 0}">
-                <p th:text="RECORDS + ${': '+users.size()}"></p>
-            </h3>
+            <div class="col s8">
+                <h3 th:if="${users.size() > 0}">
+                    <p th:text="RECORDS + ${': '+users.size()}"></p>
+                </h3>
 
-            <table class="striped responsive-table centered " th:if="${users.size() > 0}">
-                <thead>
+                <table class="striped responsive-table centered " th:if="${users.size() > 0}">
+                    <thead>
 
-                <tr>
-                    <th>ID</th>
-                    <th>FIRST NAME</th>
-                    <th>LAST NAME</th>
-                    <th>EMAIL</th>
-                    <th>GENDER</th>
-                    <th>PHONE</th>
-                    <th>ACTIONS</th>
-                </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>FIRST NAME</th>
+                        <th>LAST NAME</th>
+                        <th>EMAIL</th>
+                        <th>GENDER</th>
+                        <th>PHONE</th>
+                        <th>ACTIONS</th>
+                    </tr>
 
-                </thead>
-                <tbody>
-                <tr th:each="user: ${users}">
-                    <td th:text="${user.getId()}"></td>
-                    <td th:text="${user.getFirst_name()}"></td>
-                    <td th:text="${user.getLast_name()}"></td>
-                    <td th:text="${user.getEmail()}"></td>
-                    <td th:text="${user.getGender()}"></td>
-                    <td th:text="${user.getPhone()}"></td>
-                    <td>
-                        <div>
-                            <button class="btn orange">UPDATE</button>
-                            <button class="btn red">DELETE</button>
+                    </thead>
+                    <tbody>
+                    <tr th:each="user: ${users}">
+                        <td th:text="${user.getId()}"></td>
+                        <td th:text="${user.getFirst_name()}"></td>
+                        <td th:text="${user.getLast_name()}"></td>
+                        <td th:text="${user.getEmail()}"></td>
+                        <td th:text="${user.getGender()}"></td>
+                        <td th:text="${user.getPhone()}"></td>
+                        <td>
+                            <div>
+                                <button class="btn orange modal-trigger" data-target="update_modal" style="margin: 1%;" th:attr="onclick=|updateMe('${user.getId()}','${user.getFirst_name()}','${user.getLast_name()}','${user.getEmail()}','${user.getPhone()}','${user.getGender()}')|">UPDATE</button>
+                                <a class="btn red" th:href="@{/data/csv/load/delete/{id}(id=${user.getId()})}">DELETE</a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col s4" id="update-column" hidden>
+                <h4 class="">
+                    UPDATE RECORD
+                </h4>
+                <div class="row">
+                    <form class="col s12" id="update-form" method="post"  action="#" th:action="@{/data/csv/load/update}" th:object="${updated_user}">
+                        <div class="row">
+                            <input id="id" name="id" hidden type="number" th:field="*{id}">
+                            <input id="gender" name="gender" hidden type="text" th:field="*{gender}">
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input id="first_name" type="text" name="first_name" th:field="*{first_name}">
+                                <label for="first_name" class="active">First Name</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input id="last_name" type="text" class="validate" name="last_name" th:field="*{last_name}">
+                                <label for="last_name" class="active">Last Name</label>
+                            </div>
                         </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">email</i>
+                                <input id="email" type="email" name="email" th:field="*{email}">
+                                <label for="email" class="active">Email</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">phone</i>
+                                <input id="phone" type="tel" class="validate" name="phone" th:field="*{phone}">
+                                <label for="phone" class="active">Phone</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input class="btn green darken-4" type="submit" value="UPDATE RECORD" name="submit">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+
 
         </div>
     </div>
@@ -74,5 +126,35 @@
 <footer th:insert="fragments/footer">
 
 </footer>
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+
+<script type="text/javascript"  defer>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const elems = document.querySelectorAll('.modal');
+        const instances = M.Modal.init(elems, options);
+    });
+
+    /*document.querySelectorAll('button').forEach(function (item) {
+        item.addEventListener('click', ()=>{
+            alert('Message');
+        })
+    })*/
+
+    function updateMe(id, fname, lname, email, phone, gender){
+        document.getElementById("first_name").value = fname;
+        document.getElementById("last_name").value = lname;
+        document.getElementById("email").value = email;
+        document.getElementById("phone").value = phone;
+        document.getElementById("id").value = id;
+        document.getElementById("gender").value = gender;
+        document.getElementById("update-column").removeAttribute("hidden");
+        M.updateTextFields();
+    }
+
+</script>
+
 </body>
 </html>
