@@ -16,9 +16,6 @@ public class FileOperator {
     //file resource object
     private Resource fileResource;
 
-    @Autowired
-    private ResourceLoader resourceLoader;
-
     public FileOperator() {
     }
 
