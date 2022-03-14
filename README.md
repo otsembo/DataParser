@@ -10,6 +10,11 @@ The application is used as a demonstration for working with CSV file in Java.
 
 [DATA PARSER IN ACTION](https://mysterious-tor-52573.herokuapp.com/)
 
+# App Architecture
+This application was built with the following in mind:
+- [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) - The traditional MVC architecture that makes use of the Controller as the key component in the entire application.
+- [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) - A convention adopted by Robert C Martin. Uncle bob speaks of separation of concerns that eases the rate of development and allows for complete modularity of components during development, testing and production.
+
 # Getting Started
 In order for you to use the content on this repo ensure you have the following:
 
