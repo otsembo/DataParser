@@ -30,6 +30,7 @@ public class DataRepository {
         operator = new FileOperator();
     }
 
+    //CSV operations
     public ArrayList<User> fetchCSV() throws IOException {
         // read input stream using a buffered reader
         dataBuffer = new BufferedReader(new InputStreamReader(operator.getCSVFile()));
@@ -108,6 +109,9 @@ public class DataRepository {
         return fetchCSV();
     }
 
+
+
+    // XML operations
     public ArrayList<User> fetchXML() throws Exception{
 
         //refresh list
@@ -158,6 +162,14 @@ public class DataRepository {
 
         return userList;
     }
+
+    public ArrayList<User> updateXML(User user) throws IOException{
+
+
+
+        return userList;
+    }
+
 
     public ArrayList<User> fetchJSON() throws IOException{
         //refresh list

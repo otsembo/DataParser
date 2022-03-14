@@ -35,7 +35,7 @@ public class XMLController {
     @PostMapping("/data/xml/load/update")
     public String updateCSV(Model model, User userUpdate) throws IOException{
         model.addAttribute("updated_user", userUpdate);
-        model.addAttribute("users", dataRepository.updateCSV(userUpdate));
+        model.addAttribute("users", dataRepository.updateXML(userUpdate));
         model.addAttribute("update", true);
         return "xml";
     }
