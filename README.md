@@ -28,6 +28,7 @@ This application was built with the following dependencies:
 - [Spring Boot](https://spring.io/) - Server-side web framework
 - [Thymeleaf](https://www.thymeleaf.org/) - Templating engine for Spring
 - [Gson](https://github.com/google/gson) - JSON Serializer library
+- [Maven](https://maven.apache.org/) - Build tool for managing application dependencies
 - [JUnit](https://junit.org/junit5/) - Unit testing
 - [Mockito](https://site.mockito.org/) - Mocking for easy Unit testing
 - [Hamcrest](http://hamcrest.org/) - Complementary Unit testing library
