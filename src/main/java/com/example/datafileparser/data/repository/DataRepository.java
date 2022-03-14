@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public class DataRepository {
 
-    private final FileOperator operator;
-    private BufferedReader dataBuffer;
+    public final FileOperator operator;
+    public BufferedReader dataBuffer;
     public ArrayList<User> userList;
 
     public DataRepository() {

@@ -2,7 +2,6 @@ package com.example.datafileparser;
 
 import com.example.datafileparser.data.model.User;
 import org.hamcrest.MatcherAssert;
-import org.junit.Assert;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.hasProperty;
