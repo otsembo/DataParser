@@ -3,6 +3,7 @@ package com.example.datafileparser.presentation.controllers;
 import com.example.datafileparser.common.Constants;
 import com.example.datafileparser.data.model.User;
 import com.example.datafileparser.data.repository.DataRepository;
+import com.example.datafileparser.presentation.utils.Commons;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,21 +17,18 @@ public class XMLController {
 
     private final DataRepository dataRepository = new DataRepository();
     private final User emptyUser = new User();
-    private final boolean isUpdate = false;
 
     @GetMapping("/data/xml")
     public String csv(Model model) throws IOException {
-        model.addAttribute("updated_user", emptyUser);
+        Commons.UI_DEFAULTS(model);
         model.addAttribute("users", Constants.DEFAULT_USERS);
-        model.addAttribute("update", isUpdate);
         return "xml";
     }
 
     @GetMapping("/data/xml/load")
     public String csvLoad(Model model) throws Exception {
-        model.addAttribute("updated_user", emptyUser);
+        Commons.UI_DEFAULTS(model);
         model.addAttribute("users", dataRepository.fetchXML());
-        model.addAttribute("update", isUpdate);
         return "xml";
     }
 
