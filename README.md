@@ -85,10 +85,14 @@ Running the application is very straight forward. You can use the following step
 
 Take a snippet at what the application looks like
 
-| HOME SCREEN                                 | DATA SCREEN                                      | ADD DATA                                        |
-|---------------------------------------------|--------------------------------------------------|-------------------------------------------------|
-| <img src="screens/home.png" height="250px"> | <img src="screens/load_data.png" height="250px"> | <img src="screens/add_data.png" height="250px"> |
-
+| HOME SCREEN                                     | DATA SCREEN                                        |
+|-------------------------------------------------|----------------------------------------------------|
+| <img src="screens/home.png" height="200px">     | <img src="screens/load_data.png" height="200px">   |
+| ---------------------------------------------   | ---------------------------------------------      |
+| ADD DATA                                        | UPDATE DATA                                        |
+| ---------------------------------------------   | ---------------------------------------------      |
+| <img src="screens/add_data.png" height="200px"> | <img src="screens/update_data.png" height="200px"> |
+| ---------------------------------------------   | ---------------------------------------------      |
 # Known Bugs
 At this time there are no known bugs. If there is any occurring while you are experiencing the website kindly notify me on [My email](mailto:okumu.otsembo@gmail.com)
 # Authors
