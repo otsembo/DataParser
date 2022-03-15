@@ -37,6 +37,7 @@ public class CSVController {
 
     @PostMapping("/data/csv/load/update")
     public String updateCSV(Model model, User userUpdate) throws IOException{
+        if(userUpdate.id == 0) userUpdate.setId(dataRepository.newest_id);
         model.addAttribute("updated_user", userUpdate);
         model.addAttribute("users", dataRepository.updateCSV(userUpdate));
         model.addAttribute("update", true);

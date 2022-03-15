@@ -16,9 +16,9 @@
                 <a class="btn blue darken-4" th:href="@{./csv/load}">LOAD EXISTING DATA</a>
             </div>
 
-            <!--<div class="col" style="margin-top: 2%;">
-                <a class="btn green darken-4" th:href="@{./csv/download}">DOWNLOAD ORIGINAL DATA SET</a>
-            </div>-->
+            <div class="col" style="margin-top: 2%;">
+                <a class="btn green darken-4" onclick="showCreate()">CREATE RECORD</a>
+            </div>
 
             <!--<div class="col" style="margin-top: 2%;">
                 <a class="btn purple darken-4" th:href="@{./csv/download/final}">DOWNLOAD UPDATED DATASET</a>
@@ -76,14 +76,13 @@
                 </div>
 
                 <div class="col s4" id="update-column" hidden>
-                    <h4 class="">
+                    <h4 class="" id="update_title">
                         UPDATE RECORD
                     </h4>
                     <div class="row">
                         <form class="col s12" id="update-form" method="post"  action="#" th:action="@{/data/csv/load/update}" th:object="${updated_user}">
                             <div class="row">
                                 <input id="id" name="id" hidden type="number" th:field="*{id}">
-                                <input id="gender" name="gender" hidden type="text" th:field="*{gender}">
                                 <div class="input-field col s6">
                                     <i class="material-icons prefix">account_circle</i>
                                     <input id="first_name" type="text" name="first_name" th:field="*{first_name}">
@@ -111,7 +110,15 @@
 
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <input class="btn green darken-4" type="submit" value="UPDATE RECORD" name="submit">
+                                    <i class="material-icons prefix">transgender</i>
+                                    <input id="gender" name="gender" type="text" th:field="*{gender}">
+                                    <label for="gender" class="active">Gender</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input class="btn green darken-4" type="submit" value="UPDATE RECORD" name="submit" id="submitBtn">
                                 </div>
                             </div>
 
@@ -149,15 +156,32 @@
         })*/
 
         function updateMe(id, fname, lname, email, phone, gender){
+            document.getElementById("update_title").innerText = "UPDATE RECORD";
             document.getElementById("first_name").value = fname;
             document.getElementById("last_name").value = lname;
             document.getElementById("email").value = email;
             document.getElementById("phone").value = phone;
             document.getElementById("id").value = id;
             document.getElementById("gender").value = gender;
+            document.getElementById("submitBtn").value = "UPDATE RECORD";
             document.getElementById("update-column").removeAttribute("hidden");
             M.updateTextFields();
         }
+
+        function showCreate(){
+            document.getElementById("update_title").innerText = "CREATE RECORD";
+            document.getElementById("first_name").value = "";
+            document.getElementById("last_name").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("phone").value = "";
+            document.getElementById("id").value = 0;
+            document.getElementById("gender").value = "";
+            document.getElementById("submitBtn").value = "CREATE RECORD";
+            document.getElementById("update-column").removeAttribute("hidden");
+            M.updateTextFields();
+        }
+
+
 
     </script>
 

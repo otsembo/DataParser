@@ -15,7 +15,6 @@ public class HomeController {
     public String index(Model model) throws IOException {
         model.addAttribute("name", "data");
         model.addAttribute("download_url", Constants.FILE_DOWNLOAD_URL);
-        System.out.println(new DataRepository().data());
         return "index";
     }
 

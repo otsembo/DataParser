@@ -12,4 +12,6 @@ public class Constants {
 
     public static final String FILE_DOWNLOAD_URL = "https://drive.google.com/file/d/1I2vFp79Sg_X3jPMH5o4keQDPfx2lU1k9/view?usp=sharing";
 
+    public static final String CSV_HEADER = "id,first_name,last_name,email,gender,phone";
+
 }

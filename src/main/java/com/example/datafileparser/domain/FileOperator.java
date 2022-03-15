@@ -19,20 +19,15 @@ public class FileOperator {
     public FileOperator() {
     }
 
-    public File getCSVFromRoot() throws IOException{
-        return new File("user.csv");
-    }
-
     // get csv file
     public InputStream getCSVFile() throws IOException {
-        fileResource = new ClassPathResource("/assets/user.csv");
-        return  fileResource.getInputStream();
+        File file = new File("user.csv");
+        return  new FileInputStream(file);
     }
 
     //write csv file
     public void writeCSV(String data) throws IOException{
-        fileResource = new ClassPathResource("/assets/user.csv");
-        FileWriter dataWriter = new FileWriter(new ClassPathResource("assets/user.csv").getFile());
+        FileWriter dataWriter = new FileWriter("user.csv");
         dataWriter.append(data);
         dataWriter.flush();
     }
