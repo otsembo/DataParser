@@ -5,6 +5,7 @@ import com.example.datafileparser.domain.FileOperator;
 import com.example.datafileparser.domain.UserParser;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class DataRepository {
 
@@ -14,6 +15,19 @@ public class DataRepository {
 
     public DataRepository() {
         operator = new FileOperator();
+    }
+
+    //test file
+    public String data() throws IOException{
+        Scanner appScanner = new Scanner(operator.getCSVFromRoot());
+        StringBuilder builder = new StringBuilder();
+        String line;
+        while (appScanner.hasNextLine()){
+            line = appScanner.nextLine();
+            builder.append(line);
+        }
+        appScanner.close();
+        return builder.toString();
     }
 
     //CSV operations

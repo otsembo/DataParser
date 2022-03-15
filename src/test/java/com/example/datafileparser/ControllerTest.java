@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 
 import static org.junit.Assert.assertEquals;
@@ -35,13 +36,13 @@ public class ControllerTest {
     }
 
     @Test
-    public void testIndexReturnsString(){
+    public void testIndexReturnsString() throws IOException {
         Object returnType = homeController.index(model);
         assertSame(returnType.getClass(), String.class);
     }
 
     @Test
-    public void testIndexHasCorrectTemplate(){
+    public void testIndexHasCorrectTemplate() throws IOException {
         String template = homeController.index(model);
         assertEquals("index", template);
     }

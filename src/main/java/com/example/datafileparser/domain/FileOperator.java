@@ -19,6 +19,9 @@ public class FileOperator {
     public FileOperator() {
     }
 
+    public File getCSVFromRoot() throws IOException{
+        return new File("user.csv");
+    }
 
     // get csv file
     public InputStream getCSVFile() throws IOException {
