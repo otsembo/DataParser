@@ -17,6 +17,9 @@ public class DataRepository {
 
     public DataRepository() {
         operator = new FileOperator();
+        try{
+            fetchCSV();
+        }catch (IOException ignored){}
     }
 
 
